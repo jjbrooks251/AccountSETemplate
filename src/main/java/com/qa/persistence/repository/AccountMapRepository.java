@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.qa.persistence.domain.Account;
+import com.qa.util.JSONUtil;
 
 public class AccountMapRepository implements AccountRepository {
 
@@ -20,20 +21,32 @@ public class AccountMapRepository implements AccountRepository {
 
 	public String getAllAccounts() {
 
-		return "returned all accounts";
+		return accountMap.toString();
 	}
 
 	public String createAccount(String account) {
+
+		JSONUtil json = new JSONUtil();
+
+		Account acc = json.getObjectForJSON(account, Account.class);
+
+		accountMap.put(acc.getId(), acc);
 
 		return "Inserted new account";
 	}
 
 	public String deleteAccount(int accountNo) {
 
+		accountMap.remove(accountNo);
+
 		return "deleted chosen accounts";
 	}
 
 	public String updateAccount(int accountNo, String account) {
+		JSONUtil json = new JSONUtil();
+		Account acc = json.getObjectForJSON(account, Account.class);
+
+		accountMap.put(acc.getId(), acc);
 
 		return "Updated chosen accounts";
 	}
