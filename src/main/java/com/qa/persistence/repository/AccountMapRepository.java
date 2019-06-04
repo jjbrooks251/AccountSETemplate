@@ -10,6 +10,7 @@ public class AccountMapRepository implements AccountRepository {
 
 	Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
 
+	private JSONUtil json = new JSONUtil();
 	// You must provide concrete implementation for each of these methods
 	// do not change the method signature
 	// THINK - if the parameter is a String, or the return type is a String
@@ -26,8 +27,6 @@ public class AccountMapRepository implements AccountRepository {
 
 	public String createAccount(String account) {
 
-		JSONUtil json = new JSONUtil();
-
 		Account acc = json.getObjectForJSON(account, Account.class);
 
 		accountMap.put(acc.getId(), acc);
@@ -43,10 +42,9 @@ public class AccountMapRepository implements AccountRepository {
 	}
 
 	public String updateAccount(int accountNo, String account) {
-		JSONUtil json = new JSONUtil();
 		Account acc = json.getObjectForJSON(account, Account.class);
 
-		accountMap.put(acc.getId(), acc);
+		accountMap.replace(accountNo, acc);
 
 		return "Updated chosen accounts";
 	}
