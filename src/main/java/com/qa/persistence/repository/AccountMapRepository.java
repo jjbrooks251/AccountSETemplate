@@ -8,7 +8,23 @@ import com.qa.util.JSONUtil;
 
 public class AccountMapRepository implements AccountRepository {
 
-	Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
+	private Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
+
+	public Map<Integer, Account> getAccountMap() {
+		return accountMap;
+	}
+
+	public void setAccountMap(Map<Integer, Account> accountMap) {
+		this.accountMap = accountMap;
+	}
+
+	public JSONUtil getJson() {
+		return json;
+	}
+
+	public void setJson(JSONUtil json) {
+		this.json = json;
+	}
 
 	private JSONUtil json = new JSONUtil();
 	// You must provide concrete implementation for each of these methods

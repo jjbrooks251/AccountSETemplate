@@ -22,6 +22,10 @@ public class Account {
 
 	}
 
+	public Account() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}
