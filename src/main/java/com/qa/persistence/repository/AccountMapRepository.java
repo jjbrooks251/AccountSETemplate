@@ -65,4 +65,34 @@ public class AccountMapRepository implements AccountRepository {
 		return "Updated chosen accounts";
 	}
 
+	public int findAccount(String firstName) {
+
+		// get accountMap size
+		// Iterate through for all with given name
+		// add to a counter
+		// return value
+
+		int count = 0;
+
+		for (Integer i : accountMap.keySet()) {
+
+			// get JSON string here for ith element
+
+			String account = "fgdsfg";
+
+			Account acc = json.getObjectForJSON(account, Account.class);
+
+			String first = acc.getFirstName();
+
+			if (first == firstName) {
+
+				count = count + 1;
+
+			}
+
+		}
+
+		return count;
+	}
+
 }

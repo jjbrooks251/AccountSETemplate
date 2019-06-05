@@ -26,7 +26,7 @@ public class AccountServiceTest {
 	@Test
 	public void addAccountTest() {
 
-		Account acc = new Account(25, 1234, "John", "Smith");
+		Account acc = new Account(25, "1234", "John", "Smith");
 		String accString = jsonUtil.getJSONForObject(acc);
 
 		// assertEquals(1, amp.getAccountMap().size());
@@ -38,10 +38,10 @@ public class AccountServiceTest {
 	@Test
 	public void add2AccountsTest() {
 
-		Account acc1 = new Account(1, 1234, "John", "Hancock");
+		Account acc1 = new Account(1, "1234", "John", "Hancock");
 		String accString = jsonUtil.getJSONForObject(acc1);
 
-		Account acc2 = new Account(2, 1234, "Jane", "doe");
+		Account acc2 = new Account(2, "1234", "Jane", "doe");
 		String accString2 = jsonUtil.getJSONForObject(acc2);
 
 		assertEquals("Account not created", "Inserted new account", amp.createAccount(accString));
@@ -54,7 +54,7 @@ public class AccountServiceTest {
 
 	@Test
 	public void removeAccountTest() {
-		Account acc2 = new Account(2, 1234, "Jane", "doe");
+		Account acc2 = new Account(2, "1234", "Jane", "doe");
 
 		assertEquals("Account doesnt exist", "deleted chosen accounts", amp.deleteAccount(2));
 
@@ -63,14 +63,32 @@ public class AccountServiceTest {
 	@Test
 	public void remove2AccountsTest() {
 
-		Account acc1 = new Account(1, 1234, "John", "Hancock");
+		Account acc1 = new Account(1, "1234", "John", "Hancock");
 		String accString = jsonUtil.getJSONForObject(acc1);
 
-		Account acc2 = new Account(2, 1234, "Jane", "doe");
+		Account acc2 = new Account(2, "1234", "Jane", "doe");
 		String accString2 = jsonUtil.getJSONForObject(acc2);
 
 		assertEquals("Account doesnt exist", "deleted chosen accounts", amp.deleteAccount(1));
 		assertEquals("Account doesnt exist", "deleted chosen accounts", amp.deleteAccount(2));
+
+	}
+
+	@Ignore
+	public void searchForAccounts() {
+
+		Account acc1 = new Account(1, "1234", "John", "Hancock");
+		String accString = jsonUtil.getJSONForObject(acc1);
+
+		Account acc2 = new Account(2, "1234", "Jane", "doe");
+		String accString2 = jsonUtil.getJSONForObject(acc2);
+
+		Account acc3 = new Account(3, "1234", "John", "doe");
+		String accString3 = jsonUtil.getJSONForObject(acc2);
+
+		// amp.findAccount("John");
+
+		assertEquals(2, amp.findAccount("John"));
 
 	}
 

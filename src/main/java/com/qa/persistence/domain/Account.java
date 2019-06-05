@@ -1,5 +1,12 @@
 package com.qa.persistence.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Account {
 
 	// This class needs to have:
@@ -7,13 +14,17 @@ public class Account {
 	// An Account Number
 	// A First Name
 	// A last Name
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int accountNo;
+	@Column(length = 20)
+	private String accountNo;
+	@Column(length = 20)
 	private String firstName;
+	@Column(length = 20)
 	private String lastName;
 
-	public Account(int id, int accountNo, String firstName, String lastName) {
+	public Account(int id, String accountNo, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.accountNo = accountNo;
@@ -34,11 +45,11 @@ public class Account {
 		this.id = id;
 	}
 
-	public int getAccountNo() {
+	public String getAccountNo() {
 		return accountNo;
 	}
 
-	public void setAccountNo(int accountNo) {
+	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
 	}
 
