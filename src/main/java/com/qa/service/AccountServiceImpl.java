@@ -17,8 +17,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public String addAccount(String account) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return repo.createAccount(account);
 	}
 
 	@Override
