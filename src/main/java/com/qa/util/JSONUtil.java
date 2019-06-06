@@ -2,11 +2,14 @@ package com.qa.util;
 
 import java.io.IOException;
 
+import javax.enterprise.inject.Default;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Default
 public class JSONUtil {
 
 	ObjectMapper mapper = new ObjectMapper();
