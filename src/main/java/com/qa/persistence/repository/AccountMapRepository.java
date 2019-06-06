@@ -3,9 +3,12 @@ package com.qa.persistence.repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.inject.Alternative;
+
 import com.qa.persistence.domain.Account;
 import com.qa.util.JSONUtil;
 
+@Alternative
 public class AccountMapRepository implements AccountRepository {
 
 	private Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
@@ -63,6 +66,36 @@ public class AccountMapRepository implements AccountRepository {
 		accountMap.replace(accountNo, acc);
 
 		return "Updated chosen accounts";
+	}
+
+	public int findAccount(String firstName) {
+
+		// get accountMap size
+		// Iterate through for all with given name
+		// add to a counter
+		// return value
+
+		int count = 0;
+
+		for (Integer i : accountMap.keySet()) {
+
+			// get JSON string here for ith element
+
+			String account = "fgdsfg";
+
+			Account acc = json.getObjectForJSON(account, Account.class);
+
+			String first = acc.getFirstName();
+
+			if (first == firstName) {
+
+				count = count + 1;
+
+			}
+
+		}
+
+		return count;
 	}
 
 }
