@@ -13,10 +13,10 @@ public class AccountEndPoint {
 	@Inject
 	private AccountService service;
 
-	@Path("/getAllMovies")
+	@Path("/getAllAccounts")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllMovies() {
-		return service.getAllMovies();
+	public String getAllAccounts() {
+		return service.getAllAccounts();
 	}
 }

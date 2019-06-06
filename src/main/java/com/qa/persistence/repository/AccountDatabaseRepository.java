@@ -1,8 +1,6 @@
 package com.qa.persistence.repository;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -17,19 +15,13 @@ import com.qa.util.JSONUtil;
 
 @Transactional(TxType.SUPPORTS)
 @Default
-public class AccountDatabaseRepository {
+public class AccountDatabaseRepository implements AccountRepository {
 
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
 
 	@Inject
 	private JSONUtil json;
-
-	private Map<Integer, Account> accountMap = new HashMap<Integer, Account>();
-
-	public Map<Integer, Account> getAccountMap() {
-		return accountMap;
-	}
 
 	public String getAllAccounts() {
 
@@ -48,7 +40,7 @@ public class AccountDatabaseRepository {
 	}
 
 	@Transactional(TxType.REQUIRED)
-	public String createAnAccount(String account) {
+	public String createAccount(String account) {
 
 		Account acc1 = json.getObjectForJSON(account, Account.class);
 
@@ -61,9 +53,9 @@ public class AccountDatabaseRepository {
 	}
 
 	@Transactional(TxType.REQUIRED)
-	public String updateAnAccount(int accountNumber, String account) {
+	public String updateAccount(int accountNo, String account) {
 
-		Account oldAcc = em.find(Account.class, accountNumber);
+		Account oldAcc = em.find(Account.class, accountNo);
 		Account newAcc = json.getObjectForJSON(account, Account.class);
 
 		em.getTransaction().begin();
@@ -76,9 +68,9 @@ public class AccountDatabaseRepository {
 	}
 
 	@Transactional(TxType.REQUIRED)
-	public String deleteAccount(int id) {
+	public String deleteAccount(int accountNo) {
 
-		Account acc1 = em.find(Account.class, id);
+		Account acc1 = em.find(Account.class, accountNo);
 
 		em.getTransaction().begin();
 		em.remove(acc1);
